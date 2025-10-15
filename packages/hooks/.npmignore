@@ -1,0 +1,29 @@
+# npm publish 时忽略这些文件
+# 这些文件会提交到 Git，但不会发布到 npm
+
+# 测试相关
+test/
+*.test.js
+*.spec.js
+coverage/
+
+# 开发配置
+.eslintrc
+.eslintrc.js
+.prettierrc
+.editorconfig
+tsconfig.json
+
+# 文档（根据需要）
+docs/
+examples/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# 其他
+.DS_Store
+*.log
+

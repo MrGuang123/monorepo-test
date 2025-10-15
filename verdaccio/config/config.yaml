@@ -1,0 +1,50 @@
+storage: /verdaccio/storage
+
+# Web 界面配置
+web:
+  title: Monorepo Test Registry
+  # 启用 Gravatar 显示用户头像
+  # 头像基于用户注册时填写的邮箱
+  gravatar: true
+  # 排序包的方式
+  sort_packages: asc
+  # 深色模式
+  # darkMode: true
+
+# 用户界面配置
+# 用户头像会根据注册时的邮箱从 Gravatar 获取
+# 如果邮箱没有在 Gravatar 注册，会显示默认头像
+
+auth:
+  htpasswd:
+    file: /verdaccio/conf/htpasswd
+    # max_users: -1 表示禁用注册
+    # max_users: 1000 表示允许注册最多 1000 个用户
+    max_users: 1000
+    # 或者不设置此字段表示无限制
+
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+
+packages:
+  "@*/*":
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: npmjs
+
+  "**":
+    access: $all
+    publish: $authenticated
+    unpublish: $authenticated
+    proxy: npmjs
+
+server:
+  keepAliveTimeout: 60
+
+middlewares:
+  audit:
+    enabled: true
+
+logs: { type: stdout, format: pretty, level: http }

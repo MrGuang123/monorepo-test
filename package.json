@@ -1,0 +1,22 @@
+{
+  "name": "monorepo-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "monorepo project using pnpm workspace",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish:all": "pnpm -r publish --registry http://localhost:4873 --no-git-checks",
+    "publish:cli": "pnpm --filter @monorepo-test/cli publish --registry http://localhost:4873 --no-git-checks",
+    "publish:hooks": "pnpm --filter @monorepo-test/hooks publish --registry http://localhost:4873 --no-git-checks",
+    "version:patch": "pnpm -r exec -- npm version patch --no-git-tag-version",
+    "version:minor": "pnpm -r exec -- npm version minor --no-git-tag-version",
+    "version:major": "pnpm -r exec -- npm version major --no-git-tag-version"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@8.0.0"
+}
